@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <title>감정 기반 Spotify 추천</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        textarea {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            font-size: 1rem;
+            resize: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #17a84b;
+        }
+
+        #result {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .playlist-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 250px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .playlist-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .playlist-card h3 {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin: 10px 0 5px;
+        }
+
+        .playlist-card p {
+            font-size: 0.9rem;
+            color: #666;
+            min-height: 50px;
+        }
+
+        .playlist-card a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1>🎧 감정 기반 플레이리스트 추천</h1>
+
+<form id="emotionForm">
+    <label for="text"></label><textarea id="text" rows="4" placeholder="오늘의 하루를 입력하세요 (예: 퇴근길이라 신나!!, 친구랑 싸웠어.. 등)"></textarea><br>
+    <button type="submit">추천 받기</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+    const form = document.getElementById('emotionForm');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const text = document.getElementById('text').value;
+
+        fetch('/api/spotify/recommend', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text })
+        })
+            .then(response => response.json())
+            .then(data => {
+                resultDiv.innerHTML = '';
+                data.forEach(playlist => {
+                    const item = document.createElement('div');
+                    item.className = 'playlist-card';
+                    item.innerHTML = `
+                        <a href="${playlist.external_urls.spotify}" target="_blank">
+                            <img src="${playlist.images[0]?.url}" alt="playlist image" />
+                        </a>
+                        <h3>${playlist.name}</h3>
+                        <p>${playlist.description}</p>
+                    `;
+                    resultDiv.appendChild(item);
+                });
+            })
+            .catch(error => {
+                resultDiv.innerHTML = `<p style="color:red;">오류 발생: ${error.message}</p>`;
+            });
+    });
+</script>
+
+</body>
+</html>
