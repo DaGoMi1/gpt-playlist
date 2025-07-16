@@ -21,8 +21,8 @@ public class GptService {
     }
 
     public Mono<GptResponse> analyzeEmotion(String inputText) {
-        String prompt = "다음 문장에서 감정을 한 단어로 분석해줘: \"" + inputText + "\". " +
-                "기쁨, 슬픔, 분노, 불안, 설렘, 중립 중 하나만 출력해.";
+        String prompt = "너는 감정 분석가야. 반드시 한 단어의 감정만 출력해. 그 외의 어떤 말도 하지 마.: \"" + inputText + "\". " +
+                "기쁨, 행복, 즐거움, 감사, 슬픔, 우울, 외로움, 분노, 짜증, 불안, 긴장, 설렘, 사랑, 중립, 평온, 놀람, 두려움, 자신감, 지루함, 감동 중 하나만 출력해.";
 
         return webClient.post()
                 .bodyValue(Map.of(

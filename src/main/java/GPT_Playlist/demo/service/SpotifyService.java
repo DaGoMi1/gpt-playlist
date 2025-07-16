@@ -79,14 +79,28 @@ public class SpotifyService {
     }
 
     private String mapEmotionToKeyword(String emotion) {
-        return switch (emotion) {
-            case "기쁨" -> "희망찬 음악";
-            case "슬픔" -> "위로가 되는 음악";
-            case "분노" -> "기분전환 되는 음악";
-            case "불안" -> "편안한 음악";
-            case "설렘" -> "사랑스러운 음악";
-            case "중립" -> "요즘 뜨는 음악";
-            default -> "요즘 뜨는 음악"; // fallback
-        };
+        if (emotion.contains("두려움")) return "안심시키는 음악";
+        if (emotion.contains("기쁨")) return "희망찬 음악";
+        if (emotion.contains("행복")) return "행복한 음악";
+        if (emotion.contains("즐거움")) return "신나는 음악";
+        if (emotion.contains("감사")) return "따뜻한 음악";
+        if (emotion.contains("슬픔")) return "위로가 되는 음악";
+        if (emotion.contains("우울")) return "차분한 음악";
+        if (emotion.contains("외로움")) return "포근한 음악";
+        if (emotion.contains("분노")) return "기분전환 되는 음악";
+        if (emotion.contains("짜증")) return "에너지 넘치는 음악";
+        if (emotion.contains("불안")) return "편안한 음악";
+        if (emotion.contains("긴장")) return "진정시키는 음악";
+        if (emotion.contains("설렘")) return "사랑스러운 음악";
+        if (emotion.contains("사랑")) return "감미로운 음악";
+        if (emotion.contains("중립")) return "요즘 뜨는 음악";
+        if (emotion.contains("평온")) return "잔잔한 음악";
+        if (emotion.contains("놀람")) return "흥미로운 음악";
+        if (emotion.contains("자신감")) return "힘이 나는 음악";
+        if (emotion.contains("지루함")) return "활기찬 음악";
+        if (emotion.contains("감동")) return "감성적인 음악";
+
+        return "요즘 뜨는 음악"; // fallback
     }
+
 }
