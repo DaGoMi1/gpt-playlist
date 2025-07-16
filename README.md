@@ -47,4 +47,4 @@
 ---
 
 > ⚠️ 현재 AWS 프리 티어 비용 한계로 상시 배포 서비스는 유지하지 않고 있습니다.  
-> 대신, 테스트용 화면 및 기능 시연 스크린샷을 [구글 드라이브]([https://drive.google.com/your-test-screenshots-folder](https://drive.google.com/drive/folders/1DG3DkcmUbi3Jd2cN5GVWraHD6j7KpnhN?usp=sharing))에서 확인하실 수 있습니다.
+> 대신, 테스트용 화면 및 기능 시연 스크린샷을 [구글 드라이브](https://drive.google.com/drive/folders/1DG3DkcmUbi3Jd2cN5GVWraHD6j7KpnhN?usp=sharing)에서 확인하실 수 있습니다.
