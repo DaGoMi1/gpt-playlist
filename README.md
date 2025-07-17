@@ -10,12 +10,10 @@
 ## 📌 기술 스택
 
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.3-green?logo=spring)
-![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
 ![Redis](https://img.shields.io/badge/Redis-7.4.2-red?logo=redis)
 ![Docker](https://img.shields.io/badge/Docker-Containerization-blue?logo=docker)
 
-- **Backend:** Spring Boot, Spring Security, JPA, Redis  
-- **Authentication:** JWT (Access Token + Refresh Token)  
+- **Backend:** Spring Boot, Redis  
 - **Frontend:** HTML, CSS, JavaScript (IntelliJ 내 개발)  
 - **Infra:** AWS
 - **Build:** Gradle
@@ -39,7 +37,6 @@
 
 - Spring Boot 기반 백엔드  
 - Redis 캐시 활용 (데이터 조회 성능 최적화)  
-- JWT 기반 인증  
 - Docker 컨테이너화 및 배포
 
 ---
